@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PERKRAHJE — IT Support & Consulting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0F1B2A;
+    --panel:#14263B;
+    --panel-border:#223A54;
+    --text:#ECEEF1;
+    --muted:#8CA0B3;
+    --accent:#E8A33D;
+    --accent-soft:#3A2E18;
+    --ok:#4CAF6D;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter', sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{font-family:'Space Grotesk', sans-serif; font-weight:600; letter-spacing:-0.01em;}
+  .mono{font-family:'IBM Plex Mono', monospace;}
+  a{color:inherit;}
+
+  .wrap{max-width:1080px; margin:0 auto; padding:0 32px;}
+
+  /* Header */
+  header{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:28px 32px;
+    max-width:1080px; margin:0 auto;
+  }
+  .mark{display:flex; align-items:center; gap:10px;}
+  .mark-dot{
+    width:9px; height:9px; border-radius:50%;
+    background:var(--ok);
+    box-shadow:0 0 0 4px rgba(76,175,109,0.15);
+    animation:pulse 2.6s ease-in-out infinite;
+  }
+  @keyframes pulse{
+    0%,100%{box-shadow:0 0 0 4px rgba(76,175,109,0.15);}
+    50%{box-shadow:0 0 0 7px rgba(76,175,109,0.06);}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .mark-dot{animation:none;}
+  }
+  .mark-name{font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:17px; letter-spacing:0.02em;}
+  header nav a{
+    color:var(--muted); text-decoration:none; font-size:14px; margin-left:28px;
+  }
+  header nav a:hover{color:var(--text);}
+  .call-btn{
+    background:var(--accent); color:#1a1204; padding:9px 16px; border-radius:6px;
+    font-weight:600; font-size:14px; text-decoration:none;
+  }
+
+  /* Hero */
+  .hero{
+    display:grid; grid-template-columns:1.15fr 0.85fr; gap:56px;
+    align-items:start;
+    padding:56px 32px 88px;
+    max-width:1080px; margin:0 auto;
+  }
+  .hero h1{
+    font-size:52px; line-height:1.08; letter-spacing:-0.02em;
+    max-width:9.5ch;
+  }
+  .hero p.lede{
+    color:var(--muted); font-size:17px; max-width:46ch; margin-top:22px;
+  }
+  .hero-actions{margin-top:32px; display:flex; gap:14px; align-items:center;}
+  .btn-primary{
+    background:var(--accent); color:#1a1204; padding:12px 20px; border-radius:6px;
+    font-weight:600; font-size:15px; text-decoration:none;
+  }
+  .btn-secondary{
+    color:var(--text); padding:12px 6px; font-size:15px; text-decoration:none;
+    border-bottom:1px solid var(--panel-border);
+  }
+
+  /* Status panel */
+  .status-panel{
+    background:var(--panel); border:1px solid var(--panel-border); border-radius:10px;
+    padding:22px 22px 14px;
+  }
+  .status-panel-head{
+    display:flex; justify-content:space-between; align-items:baseline;
+    padding-bottom:14px; margin-bottom:6px; border-bottom:1px solid var(--panel-border);
+  }
+  .status-panel-head .label{font-size:13px; color:var(--muted);}
+  .status-panel-head .value{font-size:13px; color:var(--ok);}
+  .status-row{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:12px 0; border-bottom:1px solid rgba(34,58,84,0.5);
+  }
+  .status-row:last-child{border-bottom:none;}
+  .status-row .name{display:flex; align-items:center; gap:10px; font-size:14px;}
+  .status-dot{width:7px; height:7px; border-radius:50%; background:var(--ok); flex-shrink:0;}
+  .status-row .latency{color:var(--muted); font-size:12.5px;}
+
+  /* Section heading */
+  .section-heading{
+    font-size:28px; margin-bottom:36px;
+  }
+
+  /* Services manifest */
+  .services{padding:20px 32px 88px; max-width:1080px; margin:0 auto;}
+  .service-row{
+    display:grid; grid-template-columns:220px 1fr;
+    gap:32px;
+    padding:26px 0;
+    border-top:1px solid var(--panel-border);
+  }
+  .service-row:last-child{border-bottom:1px solid var(--panel-border);}
+  .service-row h3{font-size:19px; font-weight:500;}
+  .service-row .num{color:var(--accent); font-size:13px; margin-right:10px;}
+  .service-row p{color:var(--muted); font-size:15px; max-width:52ch;}
+
+  /* Ops / contact */
+  .ops{
+    background:var(--panel); border-top:1px solid var(--panel-border); border-bottom:1px solid var(--panel-border);
+    padding:64px 32px;
+  }
+  .ops-inner{max-width:1080px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:48px;}
+  .ops h2{font-size:26px; margin-bottom:14px;}
+  .ops p{color:var(--muted); font-size:15px; max-width:40ch;}
+  .ops-schedule{border-left:2px solid var(--accent); padding-left:22px;}
+  .ops-line{display:flex; justify-content:space-between; padding:10px 0; font-size:14.5px; max-width:360px;}
+  .ops-line .k{color:var(--muted);}
+  .ops-line .v{font-weight:500;}
+  .ops-phone{
+    font-family:'Space Grotesk', sans-serif; font-size:26px; font-weight:600; margin-top:18px;
+    display:inline-block;
+  }
+  .ops-email{color:var(--accent); text-decoration:none; font-size:15px; display:inline-block; margin-top:6px;}
+
+  footer{
+    padding:28px 32px; max-width:1080px; margin:0 auto;
+    display:flex; justify-content:space-between; align-items:center;
+    color:var(--muted); font-size:13px;
+  }
+
+  @media (max-width:760px){
+    header{flex-wrap:wrap; gap:12px;}
+    header nav{display:none;}
+    .hero{grid-template-columns:1fr; padding-top:40px;}
+    .hero h1{font-size:38px; max-width:none;}
+    .service-row{grid-template-columns:1fr; gap:8px;}
+    .ops-inner{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="mark">
+    <span class="mark-dot"></span>
+    <span class="mark-name">PERKRAHJE</span>
+  </div>
+  <nav>
+    <a href="#services">Services</a>
+    <a href="#contact">Contact</a>
+    <a href="#contact" class="call-btn">Call now</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div>
+    <h1>IT that keeps working while you do.</h1>
+    <p class="lede">Fast, reliable IT support and strategic consulting for businesses of all sizes — from a single overloaded laptop to your whole network.</p>
+    <div class="hero-actions">
+      <a href="tel:+491556440167" class="btn-primary">+49 155 6644 0167</a>
+      <a href="#services" class="btn-secondary">See what we cover</a>
+    </div>
+  </div>
+
+  <div class="status-panel">
+    <div class="status-panel-head">
+      <span class="label">Current coverage</span>
+      <span class="value mono">ALL SYSTEMS UP</span>
+    </div>
+    <div class="status-row">
+      <span class="name"><span class="status-dot"></span>IT Support</span>
+      <span class="latency mono">on call</span>
+    </div>
+    <div class="status-row">
+      <span class="name"><span class="status-dot"></span>Cybersecurity</span>
+      <span class="latency mono">monitored</span>
+    </div>
+    <div class="status-row">
+      <span class="name"><span class="status-dot"></span>Cloud Solutions</span>
+      <span class="latency mono">managed</span>
+    </div>
+    <div class="status-row">
+      <span class="name"><span class="status-dot"></span>Network Setup</span>
+      <span class="latency mono">available</span>
+    </div>
+    <div class="status-row">
+      <span class="name"><span class="status-dot"></span>Maintenance</span>
+      <span class="latency mono">scheduled</span>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <h2 class="section-heading">What we cover</h2>
+
+  <div class="service-row">
+    <h3><span class="num mono">01</span>IT Support</h3>
+    <p>Day-to-day troubleshooting for your team, remote or on-site, so small problems get fixed before they become downtime.</p>
+  </div>
+  <div class="service-row">
+    <h3><span class="num mono">02</span>Cybersecurity</h3>
+    <p>Protection for your systems and data — from endpoint security to policy — sized to how your business actually operates.</p>
+  </div>
+  <div class="service-row">
+    <h3><span class="num mono">03</span>Cloud Solutions</h3>
+    <p>Migration, setup, and ongoing management of cloud infrastructure, so your team can work from anywhere without friction.</p>
+  </div>
+  <div class="service-row">
+    <h3><span class="num mono">04</span>Network Setup</h3>
+    <p>Design and installation of reliable, secure networks — wired or wireless — built to grow with your business.</p>
+  </div>
+  <div class="service-row">
+    <h3><span class="num mono">05</span>IT Consulting</h3>
+    <p>Strategic guidance on the tools and infrastructure decisions that shape how your business runs long-term.</p>
+  </div>
+  <div class="service-row">
+    <h3><span class="num mono">06</span>Maintenance</h3>
+    <p>Regular upkeep and monitoring that catches issues early, so systems stay healthy without you having to think about it.</p>
+  </div>
+</section>
+
+<section class="ops" id="contact">
+  <div class="ops-inner">
+    <div>
+      <h2>Get in touch</h2>
+      <p>Reach out for support, a quote, or just to ask whether we can help with what you've got.</p>
+      <a href="tel:+491556440167" class="ops-phone">+49 155 6644 0167</a><br>
+      <a href="mailto:info@perkrahje.com" class="ops-email">info@perkrahje.com</a>
+    </div>
+    <div class="ops-schedule">
+      <div class="ops-line"><span class="k">Regular hours</span><span class="v mono">Mon–Fri 08:00–18:00</span></div>
+      <div class="ops-line"><span class="k">Emergency support</span><span class="v mono">24/7</span></div>
+      <div class="ops-line"><span class="k">Response time</span><span class="v mono">Same business day</span></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 PERKRAHJE</span>
+  <span class="mono">Berlin</span>
+</footer>
+
+</body>
+</html>

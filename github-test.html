@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GitHub Upload Test</title>
+  <style>
+    body {
+      display: grid;
+      min-height: 100vh;
+      margin: 0;
+      place-items: center;
+      background: #f3f6f8;
+      color: #173042;
+      font: 16px/1.5 system-ui, sans-serif;
+    }
+
+    main {
+      max-width: 32rem;
+      margin: 1rem;
+      padding: 2rem;
+      border: 1px solid #c9d6dc;
+      border-radius: 10px;
+      background: white;
+      text-align: center;
+      box-shadow: 0 8px 24px #17304218;
+    }
+
+    .status {
+      color: #167447;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>GitHub upload works</h1>
+    <p class="status" id="status">HTML loaded successfully.</p>
+    <p>This file is ready to upload with the rest of the repository.</p>
+  </main>
+
+  <script>
+    document.getElementById('status').textContent = 'HTML and JavaScript loaded successfully.';
+  </script>
+</body>
+</html>
